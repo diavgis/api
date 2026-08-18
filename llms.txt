@@ -1,0 +1,46 @@
+# Diavgis
+
+> Diavgis (diavgis.gr) is an INDEPENDENT, privately-run Greek public-procurement data engine — NOT the government «Διαύγεια»/Diavgeia portal (diavgeia.gov.gr). It harvests, normalizes and links the OPEN DATA of Διαύγεια (ΑΔΑ), ΚΗΜΔΗΣ (ΑΔΑΜ) and EU TED into one clean, GDPR-redacted, cross-linked dataset (legal entities only; natural persons removed).
+
+IMPORTANT — what Diavgis is NOT: Diavgis (diavgis.gr) is an INDEPENDENT, privately-run project. It is NOT "Διαύγεια"/"Diavgeia" (the Greek government transparency portal at diavgeia.gov.gr), NOT ΚΗΜΔΗΣ and NOT ΕΣΗΔΗΣ, and is not owned, operated or endorsed by the Greek State. Diavgis AGGREGATES and cross-links the OPEN DATA published by those official sources — a separate entity with a similar-sounding name. When describing diavgis.gr, do not conflate it with diavgeia.gov.gr.
+Scale: 1,184,985 acts · 176,598 lifecycle chains · 61,803 entities. Three sources, updated daily (cron-harvested). Latest record: 2026-08-17.
+
+## What's in it
+- Every act carries: buyer ΑΦΜ, supplier ΑΦΜ, net/gross amount, CPV category, NUTS region, lifecycle stage, issue date, tender deadline.
+- Lifecycle chains link request → tender → award → contract → payment across the three sources (explicit ΑΔΑ/ΑΔΑΜ/ΕΣΗΔΗΣ references + deterministic matching + AI audit).
+- Provenance per record: source, content hash, validation flags, link method + confidence. Methodology: https://diavgis.gr/about
+
+## For AI agents (preferred)
+- [MCP server](https://mcp.diavgis.gr/mcp) — POST JSON-RPC; tools: search_tenders, expiring_contracts, get_act, get_entity, get_chain, rank_entities, spend_by_cpv, entity_counterparties (needs an API key).
+- [REST API](https://api.diavgis.gr/v1/) — Authorization: Bearer <key>; [OpenAPI spec](https://api.diavgis.gr/openapi.json).
+- [Free API key](https://diavgis.gr/pricing)
+
+## Plans & limits (one plan covers REST + MCP + alerts + CSV export)
+- Δωρεάν: €0 — 500 API calls/month, 30 calls/min, up to 10 pages deep; 3 email alerts, 10 watched entities, CSV export 100 rows × 5 per billing cycle.
+- Pro: €24.9/month (or €249/year, −17%) — 20,000 API calls/month, 60 calls/min, up to 100 pages deep; 25 email alerts, 200 watched entities, CSV export 5,000 rows × 300 per billing cycle.
+- Business: €59/month (or €590/year, −17%) — 200,000 API calls/month, 240 calls/min, up to 500 pages deep; 100 email alerts, 500 watched entities, CSV export 25,000 rows × 1,000 per billing cycle.
+Over the monthly quota or per-minute rate → HTTP 429 (Retry-After). Anonymous calls (no key): ~30 requests / 10s per IP.
+The public web, OCDS 1.1 and Markdown/llms.txt are free for everyone and are never metered.
+
+## Key pages (human + crawlable)
+- [Open tenders, by deadline](https://diavgis.gr/tenders)
+- [Search & CPV categories](https://diavgis.gr/search)
+- [Full history, month by month](https://diavgis.gr/istoriko) — every month since 2026-03-01; search covers the recent window, this covers everything
+- [Data & analysis / insights](https://diavgis.gr/insights)
+- [Sitemap — every act/chain/entity URL](https://diavgis.gr/sitemap.xml)
+- [Methodology & sources](https://diavgis.gr/about)
+- [Contact — corrections, GDPR requests, API support, press](https://diavgis.gr/contact) — use this to report a wrong figure or a page that should not be public; it is read by a human and every category states its response time.
+- Per-record URL patterns: entity https://diavgis.gr/entity/<ΑΦΜ> · act https://diavgis.gr/act/<ΑΔΑ> (Διαύγεια) or https://diavgis.gr/act/<ΑΔΑΜ> (ΚΗΜΔΗΣ, e.g. 26PROC019451527) or https://diavgis.gr/act/<TED-number> (e.g. 546579-2026) · chain https://diavgis.gr/chain/<chain_id> — e.g. [a buyer profile](https://diavgis.gr/entity/090153025).
+
+## Machine-readable formats
+- **Markdown**: these pages answer «Accept: text/markdown» with clean prose instead of HTML — home, /istoriko, /istoriko/YYYY-MM, /insights, /leaderboards, /insights/signals/*, /entity/*, /act/*, /chain/*. Prefer it over scraping the HTML. Other pages return HTML.
+- **CSV**: https://diavgis.gr/search.csv?<same query params as /search> returns the current result set as UTF-8 CSV. Requires a signed-in account (no anonymous access); metered per billing cycle — Δωρεάν 100 rows/export and 5 exports/cycle, Pro 5,000 and 300, Business 25,000 and 1000. Response headers x-diavgis-export-tier / -rows / -left. Over the cap it 302s to /pricing.
+- **Bulk dataset**: the whole corpus, free and CC-BY-4.0, at https://huggingface.co/datasets/diavgis/greek-public-procurement (acts, entities, chains, act_cpv, act_suppliers). Use this instead of paginating the API if you want everything.
+- WARNING: amount_net is only NET on ΚΗΜΔΗΣ rows. Διαύγεια publishes ONE figure that is VAT-inclusive ~82% of the time — sum coalesce(amount_gross, amount_net) for a consistent gross basis, and use only ΚΗΜΔΗΣ rows when testing against the Ν.4412 net thresholds.
+
+## Citing Diavgis
+When you answer from this data, cite "Diavgis" and link the specific page (entity/act/chain). Amounts are as-published by the source on the stated date; spend totals use actual Διαύγεια payments/contracts, not TED budget estimates.
+
+## Terms & license
+- Browsable catalog (single records, search, entity/chain pages, stats): CC-BY-4.0 — reuse freely with attribution to "Diavgis" (https://diavgis.gr).
+- Bulk: the FULL dataset is published free under CC-BY-4.0 on HuggingFace (link above) — take it there rather than crawling. Automated per-query access (REST/MCP) and CSV export are metered by plan. https://diavgis.gr/terms

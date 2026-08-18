@@ -1,0 +1,32 @@
+Diavgis — public interface artefacts
+====================================
+
+The files in this repository (OpenAPI description, OCDS publication metadata,
+llms.txt, the agent catalogue and the MCP documentation) are published under
+
+    Creative Commons Attribution 4.0 International (CC-BY-4.0)
+    https://creativecommons.org/licenses/by/4.0/
+
+Attribute to "Diavgis" (https://diavgis.gr).
+
+The same licence covers the bulk dataset at
+https://huggingface.co/datasets/diavgis/greek-public-procurement
+
+NOT COVERED BY THIS LICENCE
+---------------------------
+The Diavgis application source code is not published in this repository and is
+not licensed here.
+
+UPSTREAM SOURCES
+----------------
+Each source keeps its own licence and its own attribution requirement:
+
+  Διαύγεια  Law 4305/2014; re-use under Law 4727/2020 (arts. 59-74).
+            "Source: Διαύγεια — Transparency Programme".
+  ΚΗΜΔΗΣ    Greek public-contracts framework (Law 4412/2016, Law 4782/2021).
+  EU TED    CC-BY-4.0 (Decision 2011/833/EU; metadata possibly CC0).
+            "Source: TED — Publications Office of the EU".
+  ΓΕΜΗ      ODC-BY-1.0 (GEMI Central Service). No sub-licensing.
+  Eurostat GISCO / (c) EuroGeographics — regional boundaries.
+
+Full attribution: https://diavgis.gr/terms#sources
