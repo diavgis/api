@@ -1,72 +1,101 @@
 # Diavgis
 
-> Diavgis (diavgis.gr) is an INDEPENDENT, privately-run Greek public-procurement data engine έΑΦ NOT the government ┬τ╬Φ╬╣╬▒╧Ξ╬│╬╡╬╣╬▒┬╗/Diavgeia portal (diavgeia.gov.gr). It harvests, normalizes and links the OPEN DATA of ╬Φ╬╣╬▒╧Ξ╬│╬╡╬╣╬▒ (╬Σ╬Φ╬Σ), ╬γ╬Ω╬ε╬Φ╬Ω╬μ (╬Σ╬Φ╬Σ╬ε) and EU TED into one clean, GDPR-redacted, cross-linked dataset (legal entities only; natural persons removed).
+> Diavgis (diavgis.gr) is an INDEPENDENT, privately-run Greek public-procurement data engine — NOT the government «Διαύγεια»/Diavgeia portal (diavgeia.gov.gr). It harvests, normalizes and links the OPEN DATA of Διαύγεια (ΑΔΑ), ΚΗΜΔΗΣ (ΑΔΑΜ) and EU TED into one clean, GDPR-compliant, cross-linked dataset (natural persons appear only as contractors; their tax IDs are never published).
 
-IMPORTANT έΑΦ what Diavgis is NOT: Diavgis (diavgis.gr) is an INDEPENDENT, privately-run project. It is NOT "╬Φ╬╣╬▒╧Ξ╬│╬╡╬╣╬▒"/"Diavgeia" (the Greek government transparency portal at diavgeia.gov.gr), NOT ╬γ╬Ω╬ε╬Φ╬Ω╬μ and NOT ╬Χ╬μ╬Ω╬Φ╬Ω╬μ, and is not owned, operated or endorsed by the Greek State. Diavgis AGGREGATES and cross-links the OPEN DATA published by those official sources έΑΦ a separate entity with a similar-sounding name. When describing diavgis.gr, do not conflate it with diavgeia.gov.gr.
-Scale: 1,309,466 acts ┬╖ 184,750 lifecycle chains ┬╖ 66,132 entities. Three sources, updated daily. Latest record: 2026-09-02.
+IMPORTANT — what Diavgis is NOT: Diavgis (diavgis.gr) is an INDEPENDENT, privately-run project. It is NOT "Διαύγεια"/"Diavgeia" (the Greek government transparency portal at diavgeia.gov.gr), NOT ΚΗΜΔΗΣ and NOT ΕΣΗΔΗΣ, and is not owned, operated or endorsed by the Greek State. Diavgis AGGREGATES and cross-links the OPEN DATA published by those official sources — a separate entity with a similar-sounding name. When describing diavgis.gr, do not conflate it with diavgeia.gov.gr.
+Scale: 2,183,654 acts · 255,914 lifecycle chains · 88,258 entities. Three sources, updated daily. Latest record: 2026-10-23.
 
 ## What's in it
-- Every act carries: buyer ╬Σ╬ο╬ε, supplier ╬Σ╬ο╬ε, net/gross amount, CPV category, NUTS region, lifecycle stage, issue date, tender deadline.
-- Lifecycle chains link request έΗΤ tender έΗΤ award έΗΤ contract έΗΤ payment across the three sources (explicit ╬Σ╬Φ╬Σ/╬Σ╬Φ╬Σ╬ε/╬Χ╬μ╬Ω╬Φ╬Ω╬μ references + deterministic matching + AI audit).
-- Provenance per record: source, content hash, validation flags, link method + confidence. Methodology: https://diavgis.gr/about
+- Every act carries: buyer ΑΦΜ, supplier ΑΦΜ, net/gross amount, CPV category, NUTS region, lifecycle stage, issue date, tender deadline.
+- Lifecycle chains link request → tender → award → contract → payment across the three sources (explicit ΑΔΑ/ΑΔΑΜ/ΕΣΗΔΗΣ references, or proof from the documents such as the same supplier and amount; links without proof are marked as under review and not counted as proof).
+- Every record links to its official source and shows how confidently it is linked. Methodology: https://diavgis.gr/methodology
+- Upstream sources: the open data of Διαύγεια (Diavgeia), ΚΗΜΔΗΣ (KIMDIS) and EU Tenders Electronic Daily (TED). Diavgis is independent of them, not their operator — see the disclaimer above.
+
+## What suppliers get (alerts) — plans from the live plan table
+- Instant alerts on Telegram or any device/browser push the moment a matching tender is published (Starter+; 07:00–22:00, up to 40/day; email keeps only a daily 08:00 summary).
+- Purchase requests (πρωτογενή αιτήματα) in your sectors — before the tender itself is published (Pro+).
+- Star (⭐) a tender → deadline reminders (2 days before, the day before, on the day) + a personal calendar feed for Google Calendar, Outlook and Apple (Starter+).
+- Price reference on every open tender — how far below budget comparable tenders were awarded (Pro+).
+- Watchlist of buyers and suppliers with an activity pulse (Free: 3).
+- Free plan: one email alert, every day at 08:00. No card needed.
+- New accounts: 14 days of Pro free on sign-up — no card, once per person.
 
 ## For AI agents (preferred)
-- [MCP server](https://mcp.diavgis.gr/mcp) έΑΦ POST JSON-RPC; tools: search_tenders, expiring_contracts, find_entity, get_act, get_entity, get_chain, rank_entities, spend_by_cpv, entity_counterparties, get_quota (needs an API key).
-- [REST API](https://api.diavgis.gr/v1/) έΑΦ Authorization: Bearer <key>; [OpenAPI spec](https://api.diavgis.gr/openapi.json).
+- [MCP server](https://mcp.diavgis.gr/mcp) — POST JSON-RPC; tools: search_tenders, expiring_contracts, find_entity, get_act, get_entity, get_chain, rank_entities, spend_by_cpv, entity_counterparties, get_quota (needs an API key).
+- [REST API](https://api.diavgis.gr/v1/) — Authorization: Bearer <key>; [OpenAPI spec](https://api.diavgis.gr/openapi.json).
+- [API & MCP documentation](https://diavgis.gr/docs) — endpoints, parameters, worked examples, error codes.
 - [Free API key](https://diavgis.gr/pricing)
 
-## Plans & limits (one plan covers REST + MCP + alerts + CSV export)
-- ╬Φ╧Κ╧Β╬╡╬υ╬╜: έΓυ0 έΑΦ 500 API calls/month, 30 calls/min, up to 10 pages deep; 3 email alerts, 10 watched entities, CSV export 100 rows ├Ω 5 per billing cycle.
-- Pro: έΓυ24.9/month (or έΓυ249/year, έΙΤ17%) έΑΦ 20,000 API calls/month, 60 calls/min, up to 100 pages deep; 25 email alerts, 200 watched entities, CSV export 5,000 rows ├Ω 300 per billing cycle.
-- Business: έΓυ59/month (or έΓυ590/year, έΙΤ17%) έΑΦ 200,000 API calls/month, 240 calls/min, up to 500 pages deep; 100 email alerts, 500 watched entities, CSV export 25,000 rows ├Ω 1,000 per billing cycle.
-Over the monthly quota or per-minute rate έΗΤ HTTP 429 (Retry-After). Anonymous calls (no key): ~30 requests / 10s per IP.
+## Plans & limits (one plan covers REST + MCP + alerts)
+- Free: €0 — 500 API calls/month, 30 calls/min, up to 10 pages deep; 1 email alert, 3 watched entities.
+- Starter: €12.90/month (or €129/year, −17%) — 2,000 API calls/month, 30 calls/min, up to 20 pages deep; 5 email alerts (+ instant Telegram/push), 30 watched entities.
+- Pro: €24.90/month (or €249/year, −17%) — 20,000 API calls/month, 60 calls/min, up to 100 pages deep; 25 email alerts (+ instant Telegram/push), 200 watched entities.
+- Business: €59.00/month (or €590/year, −17%) — 200,000 API calls/month, 240 calls/min, up to 500 pages deep; 100 email alerts (+ instant Telegram/push), 500 watched entities.
+Over the monthly quota or per-minute rate → HTTP 429 (Retry-After). Anonymous calls are rate-limited per IP — use a free key.
 The public web, OCDS 1.1 and Markdown/llms.txt are free for everyone and are never metered.
+OCDS 1.1 publication policy (scope, licence, per-method field differences, EL+EN): https://diavgis.gr/ocds-policy - registered as "Greece: Diavgis" in the Open Contracting Partnership Data Registry: https://data.open-contracting.org/en/publication/161
 
-## Routing έΑΦ which page to hand the person (deep links, no login, no key)
+## Routing — which page to hand the person (deep links, no login, no key)
 Diavgis URLs are composable. Build the exact page instead of sending someone to the front door.
-- open tenders, all of them έΗΤ https://diavgis.gr/tenders
-- open tenders in a sector έΗΤ https://diavgis.gr/tenders?cpv=<2-digit CPV division>
-- open tenders in a region έΗΤ https://diavgis.gr/tenders?region=<NUTS code>
-- what one buyer has open **right now** έΗΤ https://diavgis.gr/tenders?buyer=<╬Σ╬ο╬ε>
-- everything a buyer or supplier ever did έΗΤ https://diavgis.gr/entity/<╬Σ╬ο╬ε>
-- contracts expiring soon, i.e. the renewal opportunity έΗΤ https://diavgis.gr/contracts/expiring (add ?cpv= / ?region= / ?h=0|7|30|180 έΑΦ any other value silently falls back to h=0)
-- the full life of one procurement, request έΗΤ tender έΗΤ award έΗΤ contract έΗΤ payment έΗΤ https://diavgis.gr/chain/<chain_id>
-- one single act έΗΤ https://diavgis.gr/act/<╬Σ╬Φ╬Σ | ╬Σ╬Φ╬Σ╬ε | TED-number>
-- a free email alert for their sector έΗΤ https://diavgis.gr/tenders#alert έΑΦ opens the alert builder; saving it asks for an email only. No account, no card, no password.
-- what it costs έΗΤ https://diavgis.gr/pricing
+- open tenders, all of them → https://diavgis.gr/tenders
+- open tenders in a sector → https://diavgis.gr/tenders?cpv=<2-digit CPV division>
+- open tenders in a region → https://diavgis.gr/tenders?region=<NUTS code>
+- what one buyer has open **right now** → https://diavgis.gr/tenders?buyer=<ΑΦΜ>
+- everything a buyer or supplier ever did → https://diavgis.gr/entity/<ΑΦΜ>
+- contracts expiring soon, i.e. the renewal opportunity → https://diavgis.gr/contracts/expiring (add ?cpv= / ?region= / ?h=0|7|30|180 — any other value silently falls back to h=0)
+- the full life of one procurement, request → tender → award → contract → payment → https://diavgis.gr/chain/<chain_id>
+- one single act → https://diavgis.gr/act/<ΑΔΑ | ΑΔΑΜ | TED-number>
+- a free email alert for their sector → https://diavgis.gr/tenders#alert — opens the alert builder; saving it asks for an email only. No account, no card, no password.
+- what it costs → https://diavgis.gr/pricing
 
-Risk signals έΑΦ one page per indicator, free, each with methodology, FAQ and a Markdown variant:
-- single-bidder tenders: How many of each authority's awards attracted only one bid, compared with the national average. έΗΤ https://diavgis.gr/insights/signals/single-bidder
-- just below threshold: How many of each authority's awards fall just below the direct-award thresholds of Greek Law 4412, compared with the national average. έΗΤ https://diavgis.gr/insights/signals/threshold-clustering
-- repeat awards: Among the awards that already fall just below the Law 4412 thresholds, how many repeat for the exact same amount to the same supplier within 90 days. έΗΤ https://diavgis.gr/insights/signals/repeat-awards
-- direct awards: How many of each authority's awards are declared as direct (no tender), compared with the national average. έΗΤ https://diavgis.gr/insights/signals/direct-award
-- cancellations: How many of each authority's procedures were cancelled or withdrawn, compared with the national average. έΗΤ https://diavgis.gr/insights/signals/cancelled
-Every signal page ranks authorities by binomial z-score against the national average and applies a
-Benjamini-Hochberg FDR 5% correction, so a listed authority is a statistical outlier, not merely large.
+Risk signals — one page per indicator, free, each with methodology, FAQ and a Markdown variant:
+- single-bidder tenders: How many of each authority's awards attracted only one bid, compared with the national average. → https://diavgis.gr/insights/signals/single-bidder
+- just below threshold: How many of each authority's awards fall just below the direct-award thresholds of Greek Law 4412, compared with the national average. → https://diavgis.gr/insights/signals/threshold-clustering
+- repeat awards: Among the awards that already fall just below the Law 4412 thresholds, how many repeat for the exact same amount to the same supplier within 90 days. → https://diavgis.gr/insights/signals/repeat-awards
+- direct awards: How many of each authority's awards are declared as direct (no tender), compared with the national average. → https://diavgis.gr/insights/signals/direct-award
+- cancellations: How many of each authority's procedures were cancelled or withdrawn, compared with the national average. → https://diavgis.gr/insights/signals/cancelled
+Every signal page ranks authorities against the national average, with a correction for testing many
+authorities at once, so a listed authority is a statistical outlier, not merely large.
 These pages state a measured fact from published data; they do not allege wrongdoing.
 Filters combine: `/tenders?cpv=33&region=EL30` = open medical-supply tenders in Attica.
-CPV divisions for `cpv=`: 03 ╬Υ╬╡╧Κ╧Β╬│╬ψ╬▒ & ╧Ε╧Β╧Ν╧Η╬╣╬╝╬▒ ┬╖ 09 ╬Χ╬╜╬φ╧Β╬│╬╡╬╣╬▒ & ╬║╬▒╧Ξ╧Δ╬╣╬╝╬▒ ┬╖ 14 ╬θ╧Β╧Ζ╬║╧Ε╬υ & ╬╝╬φ╧Ε╬▒╬╗╬╗╬▒ ┬╖ 15 ╬ν╧Β╧Ν╧Η╬╣╬╝╬▒ & ╧Α╬┐╧Ε╬υ ┬╖ 16 ╬Υ╬╡╧Κ╧Β╬│╬╣╬║╬υ ╬╝╬╖╧Θ╬▒╬╜╬χ╬╝╬▒╧Ε╬▒ ┬╖ 18 ╬Ι╬╜╬┤╧Ζ╧Δ╬╖ ┬╖ 19 ╬ξ╧Η╬υ╧Δ╬╝╬▒╧Ε╬▒, ╬┤╬φ╧Β╬╝╬▒ & ╧Α╬╗╬▒╧Δ╧Ε╬╣╬║╬υ ┬╖ 22 ╬Ι╬╜╧Ε╧Ζ╧Α╬▒ ┬╖ 24 ╬π╬╖╬╝╬╣╬║╬υ ┬╖ 30 ╬ξ╧Α╬┐╬╗╬┐╬│╬╣╧Δ╧Ε╬φ╧Γ & ╬╡╬╛╬┐╧Α╬╗╬╣╧Δ╬╝╧Ν╧Γ ╬│╧Β╬▒╧Η╬╡╬ψ╬┐╧Ζ ┬╖ 31 ╬Ω╬╗╬╡╬║╧Ε╧Β╬┐╬╗╬┐╬│╬╣╬║╧Ν╧Γ ╬╡╬╛╬┐╧Α╬╗╬╣╧Δ╬╝╧Ν╧Γ ┬╖ 32 ╬ν╬╖╬╗╬╡╧Α╬╣╬║╬┐╬╣╬╜╧Κ╬╜╬ψ╬╡╧Γ ┬╖ 33 ╬β╬▒╧Ε╧Β╬╣╬║╧Ν╧Γ ╬╡╬╛╬┐╧Α╬╗╬╣╧Δ╬╝╧Ν╧Γ & ╧Η╬υ╧Β╬╝╬▒╬║╬▒ ┬╖ 34 ╬θ╧Θ╬χ╬╝╬▒╧Ε╬▒ & ╬╝╬╡╧Ε╬▒╧Η╬┐╧Β╬φ╧Γ ┬╖ 35 ╬Χ╬╛╬┐╧Α╬╗╬╣╧Δ╬╝╧Ν╧Γ ╬▒╧Δ╧Η╬υ╬╗╬╡╬╣╬▒╧Γ ┬╖ 37 ╬Ν╧Β╬│╬▒╬╜╬▒ & ╬║╬▒╬╗╬╗╬╣╧Ε╬╡╧Θ╬╜╬╣╬║╬υ ┬╖ 38 ╬Χ╧Β╬│╬▒╧Δ╧Ε╬╖╧Β╬╣╬▒╬║╧Ν╧Γ & ╬┐╧Α╧Ε╬╣╬║╧Ν╧Γ ╬╡╬╛╬┐╧Α╬╗╬╣╧Δ╬╝╧Ν╧Γ ┬╖ 39 ╬Ι╧Α╬╣╧Α╬╗╬▒ ┬╖ 41 ╬ζ╬╡╧Β╧Ν ┬╖ 42 ╬Τ╬╣╬┐╬╝╬╖╧Θ╬▒╬╜╬╣╬║╬υ ╬╝╬╖╧Θ╬▒╬╜╬χ╬╝╬▒╧Ε╬▒ ┬╖ 43 ╬ε╬╖╧Θ╬▒╬╜╬χ╬╝╬▒╧Ε╬▒ ╬║╬▒╧Ε╬▒╧Δ╬║╬╡╧Ζ╧Ο╬╜ ┬╖ 44 ╬Φ╬┐╬╝╬╣╬║╬υ ╧Ζ╬╗╬╣╬║╬υ ┬╖ 45 ╬γ╬▒╧Ε╬▒╧Δ╬║╬╡╧Ζ╬▒╧Δ╧Ε╬╣╬║╬υ ╬φ╧Β╬│╬▒ ┬╖ 48 ╬δ╬┐╬│╬╣╧Δ╬╝╬╣╬║╧Ν ┬╖ 50 ╬Χ╧Α╬╣╧Δ╬║╬╡╧Ζ╬χ & ╧Δ╧Ζ╬╜╧Ε╬χ╧Β╬╖╧Δ╬╖ ┬╖ 51 ╬Χ╬│╬║╬▒╧Ε╬▒╧Δ╧Ε╬υ╧Δ╬╡╬╣╧Γ ┬╖ 55 ╬Χ╧Δ╧Ε╬ψ╬▒╧Δ╬╖ & ╬║╬▒╧Ε╬▒╬╗╧Ξ╬╝╬▒╧Ε╬▒ ┬╖ 60 ╬ξ╧Α╬╖╧Β╬╡╧Δ╬ψ╬╡╧Γ ╬╝╬╡╧Ε╬▒╧Η╬┐╧Β╧Ο╬╜ ┬╖ 63 ╬ξ╧Α╬┐╧Δ╧Ε╬╖╧Β╬╣╬║╧Ε╬╣╬║╬φ╧Γ ╧Ζ╧Α╬╖╧Β╬╡╧Δ╬ψ╬╡╧Γ ╬╝╬╡╧Ε╬▒╧Η╬┐╧Β╧Ο╬╜ ┬╖ 64 ╬ν╬▒╧Θ╧Ζ╬┤╧Β╬┐╬╝╬╣╬║╬υ & ╧Ε╬╖╬╗╬╡╧Α╬╣╬║╬┐╬╣╬╜╧Κ╬╜╬ψ╬╡╧Γ ┬╖ 65 ╬γ╬┐╬╣╬╜╬χ╧Γ ╧Κ╧Η╬φ╬╗╬╡╬╣╬▒╧Γ ┬╖ 66 ╬π╧Β╬╖╬╝╬▒╧Ε╬┐╬┐╬╣╬║╬┐╬╜╬┐╬╝╬╣╬║╬υ & ╬▒╧Δ╧Η╬υ╬╗╬╡╬╣╬╡╧Γ ┬╖ 70 ╬ξ╧Α╬╖╧Β╬╡╧Δ╬ψ╬╡╧Γ ╬▒╬║╬╣╬╜╬χ╧Ε╧Κ╬╜ ┬╖ 71 ╬Σ╧Β╧Θ╬╣╧Ε╬╡╬║╧Ε╬┐╬╜╬╣╬║╬υ & ╬╝╬╖╧Θ╬▒╬╜╬╣╬║╬υ ┬╖ 72 ╬ξ╧Α╬╖╧Β╬╡╧Δ╬ψ╬╡╧Γ ╧Α╬╗╬╖╧Β╬┐╧Η╬┐╧Β╬╣╬║╬χ╧Γ ┬╖ 73 ╬Ι╧Β╬╡╧Ζ╬╜╬▒ & ╬▒╬╜╬υ╧Α╧Ε╧Ζ╬╛╬╖ ┬╖ 75 ╬Φ╬╖╬╝╧Ν╧Δ╬╣╬▒ ╬┤╬╣╬┐╬ψ╬║╬╖╧Δ╬╖ ┬╖ 76 ╬ξ╧Α╬╖╧Β╬╡╧Δ╬ψ╬╡╧Γ ╧Α╬╡╧Ε╧Β╬╡╬╗╬▒╬ψ╬┐╧Ζ & ╬▒╬╡╧Β╬ψ╬┐╧Ζ ┬╖ 77 ╬Υ╬╡╧Κ╧Β╬│╬╣╬║╬φ╧Γ ╧Ζ╧Α╬╖╧Β╬╡╧Δ╬ψ╬╡╧Γ ┬╖ 79 ╬Χ╧Α╬╣╧Θ╬╡╬╣╧Β╬╖╬╝╬▒╧Ε╬╣╬║╬φ╧Γ ╧Ζ╧Α╬╖╧Β╬╡╧Δ╬ψ╬╡╧Γ ┬╖ 80 ╬Χ╬║╧Α╬▒╬ψ╬┤╬╡╧Ζ╧Δ╬╖ ┬╖ 85 ╬ξ╬│╬╡╬ψ╬▒ & ╬║╬┐╬╣╬╜╧Κ╬╜╬╣╬║╬χ ╬╝╬φ╧Β╬╣╬╝╬╜╬▒ ┬╖ 90 ╬ι╬╡╧Β╬╣╬▓╬υ╬╗╬╗╬┐╬╜ & ╬║╬▒╬╕╬▒╧Β╬╣╧Ν╧Ε╬╖╧Ε╬▒ ┬╖ 92 ╬ι╬┐╬╗╬╣╧Ε╬╣╧Δ╬╝╧Ν╧Γ & ╬▒╬╕╬╗╬╖╧Ε╬╣╧Δ╬╝╧Ν╧Γ ┬╖ 98 ╬δ╬┐╬╣╧Α╬φ╧Γ ╧Ζ╧Α╬╖╧Β╬╡╧Δ╬ψ╬╡╧Γ
-NUTS regions for `region=`: EL30 ╬Σ╧Ε╧Ε╬╣╬║╬χ ┬╖ EL41 ╬Τ╧Ν╧Β╬╡╬╣╬┐ ╬Σ╬╣╬│╬▒╬ψ╬┐ ┬╖ EL42 ╬ζ╧Ν╧Ε╬╣╬┐ ╬Σ╬╣╬│╬▒╬ψ╬┐ ┬╖ EL43 ╬γ╧Β╬χ╧Ε╬╖ ┬╖ EL51 ╬Σ╬╜. ╬ε╬▒╬║╬╡╬┤╬┐╬╜╬ψ╬▒ & ╬α╧Β╬υ╬║╬╖ ┬╖ EL52 ╬γ╬╡╬╜╧Ε╧Β╬╣╬║╬χ ╬ε╬▒╬║╬╡╬┤╬┐╬╜╬ψ╬▒ ┬╖ EL53 ╬Φ╧Ζ╧Ε╬╣╬║╬χ ╬ε╬▒╬║╬╡╬┤╬┐╬╜╬ψ╬▒ ┬╖ EL54 ╬Κ╧Α╬╡╬╣╧Β╬┐╧Γ ┬╖ EL61 ╬α╬╡╧Δ╧Δ╬▒╬╗╬ψ╬▒ ┬╖ EL62 ╬β╧Ν╬╜╬╣╬▒ ╬ζ╬╖╧Δ╬╣╬υ ┬╖ EL63 ╬Φ╧Ζ╧Ε╬╣╬║╬χ ╬Χ╬╗╬╗╬υ╬┤╬▒ ┬╖ EL64 ╬μ╧Ε╬╡╧Β╬╡╬υ ╬Χ╬╗╬╗╬υ╬┤╬▒ ┬╖ EL65 ╬ι╬╡╬╗╬┐╧Α╧Ν╬╜╬╜╬╖╧Δ╬┐╧Γ
+CPV divisions for `cpv=`: 03 Γεωργία & τρόφιμα · 09 Ενέργεια & καύσιμα · 14 Ορυκτά & μέταλλα · 15 Τρόφιμα & ποτά · 16 Γεωργικά μηχανήματα · 18 Ένδυση · 19 Υφάσματα, δέρμα & πλαστικά · 22 Έντυπα · 24 Χημικά · 30 Υπολογιστές & εξοπλισμός γραφείου · 31 Ηλεκτρολογικός εξοπλισμός · 32 Τηλεπικοινωνίες & οπτικοακουστικά · 33 Ιατρικός εξοπλισμός & φάρμακα · 34 Οχήματα & μεταφορές · 35 Εξοπλισμός ασφάλειας · 37 Όργανα & καλλιτεχνικά · 38 Εργαστηριακός & οπτικός εξοπλισμός · 39 Έπιπλα · 41 Νερό · 42 Βιομηχανικά μηχανήματα · 43 Μηχανήματα κατασκευών · 44 Δομικά υλικά · 45 Κατασκευαστικά έργα · 48 Λογισμικό · 50 Επισκευή & συντήρηση · 51 Εγκαταστάσεις · 55 Εστίαση & καταλύματα · 60 Υπηρεσίες μεταφορών · 63 Υποστηρικτικές υπηρεσίες μεταφορών · 64 Ταχυδρομικά & τηλεπικοινωνίες · 65 Κοινής ωφέλειας · 66 Χρηματοοικονομικά & ασφάλειες · 70 Υπηρεσίες ακινήτων · 71 Αρχιτεκτονικά & μηχανικά · 72 Υπηρεσίες πληροφορικής · 73 Έρευνα & ανάπτυξη · 75 Δημόσια διοίκηση · 76 Υπηρεσίες πετρελαίου & αερίου · 77 Γεωργικές υπηρεσίες · 79 Επιχειρηματικές υπηρεσίες · 80 Εκπαίδευση · 85 Υγεία & κοινωνική μέριμνα · 90 Περιβάλλον & καθαριότητα · 92 Πολιτισμός & αθλητισμός · 98 Λοιπές υπηρεσίες
+NUTS regions for `region=`: EL30 Αττική · EL41 Βόρειο Αιγαίο · EL42 Νότιο Αιγαίο · EL43 Κρήτη · EL51 Αν. Μακεδονία & Θράκη · EL52 Κεντρική Μακεδονία · EL53 Δυτική Μακεδονία · EL54 Ήπειρος · EL61 Θεσσαλία · EL62 Ιόνια Νησιά · EL63 Δυτική Ελλάδα · EL64 Στερεά Ελλάδα · EL65 Πελοπόννησος
+
+
+## Guides — plain-language explainers of the Greek system (free, no key, Greek + English)
+- What is an ADAM? — The ADAM (Registry Online Posting Number) is the unique code every public-contract act receives when it is posted to KIMDIS, the… → https://diavgis.gr/guides/ti-einai-adam (English: https://diavgis.gr/en/guides/ti-einai-adam)
+- ADA or ADAM: what is the difference? — They are two different codes, from two different systems, and they are constantly confused. The ADA belongs to Diavgeia and… → https://diavgis.gr/guides/ada-i-adam (English: https://diavgis.gr/en/guides/ada-i-adam)
+- Diavgeia, KIMDIS and TED: what is each one? — Three separate registries record Greek public procurement, each for its own reason. No source joins them; which is why the same… → https://diavgis.gr/guides/diaugeia-kimdis-ted (English: https://diavgis.gr/en/guides/diaugeia-kimdis-ted)
+- What does a “single-bidder” tender mean? — A single-bidder tender is one where only one bid was submitted. It is not illegal, but it is the most widely used international… → https://diavgis.gr/guides/monoprosforos-diagonismos (English: https://diavgis.gr/en/guides/monoprosforos-diagonismos)
+- What is a direct award? — A direct award is the procedure in which a body awards a contract without a prior open tender. The law permits it below specific… → https://diavgis.gr/guides/apeftheias-anathesi (English: https://diavgis.gr/en/guides/apeftheias-anathesi)
+- Greek direct award thresholds 2026: €30,000 and €60,000 — In 2026 a Greek contracting authority may award directly a contract worth up to €30,000 excluding VAT for supplies and services… → https://diavgis.gr/guides/oria-apeftheias-anathesis-2026 (English: https://diavgis.gr/en/guides/oria-apeftheias-anathesis-2026)
+- ΕΣΗΔΗΣ: how to submit a tender step by step — ΕΣΗΔΗΣ (Promitheus) is the Greek state platform where tenders above €30,000 excluding VAT are run electronically (art. 36, Law… → https://diavgis.gr/guides/esidis-prosfora-vima-vima (English: https://diavgis.gr/en/guides/esidis-prosfora-vima-vima)
+- Bid and performance guarantees in Greek tenders: 2026 rates — The participation (bid) guarantee is up to 2% of the estimated value and the performance guarantee is 4% for supplies and… → https://diavgis.gr/guides/eggyitiki-epistoli (English: https://diavgis.gr/en/guides/eggyitiki-epistoli)
+- Pre-contractual appeal to ΑΕΠΠ: deadlines and fee — An appeal to the Greek Authority for the Examination of Pre-judicial Appeals (ΑΕΠΠ) is filed within 10 days of electronic… → https://diavgis.gr/guides/prodikastiki-prosfygi-aepp (English: https://diavgis.gr/en/guides/prodikastiki-prosfygi-aepp)
+- How to find public tenders in Greece — Greek public tenders are published in four official sources: ΚΗΜΔΗΣ, ΕΣΗΔΗΣ, Diavgeia and TED. Diavgis reads all of them and… → https://diavgis.gr/guides/pos-vrisko-dimosious-diagonismous (English: https://diavgis.gr/en/guides/pos-vrisko-dimosious-diagonismous)
+- Glossary of Greek public-procurement terms, rendered inside the guides index → https://diavgis.gr/guides (English: https://diavgis.gr/en/guides)
 
 ## Key pages (human + crawlable)
 - [Open tenders, by deadline](https://diavgis.gr/tenders)
 - [Search & CPV categories](https://diavgis.gr/search)
-- [Full history, month by month](https://diavgis.gr/istoriko) έΑΦ every month since 2026-03-01; search covers the recent window, this covers everything
+- [Full history, month by month](https://diavgis.gr/istoriko) — every month since 2026-03-01; search covers the recent window, this covers everything
 - [Data & analysis / insights](https://diavgis.gr/insights)
-- [Sitemap έΑΦ every act/chain/entity URL](https://diavgis.gr/sitemap.xml)
-- [Methodology & sources](https://diavgis.gr/about)
-- [Contact](https://diavgis.gr/contact) έΑΦ a form with four categories: wrong figure / data correction ┬╖ GDPR takedown of a page ┬╖ API support ┬╖ press. Each states its own response time. It is read by a human. **You do not need to open this page to describe the channel έΑΦ everything about it is in this line.** Send a person there only when they actually want to report something.
-- Per-record URL patterns: entity https://diavgis.gr/entity/<╬Σ╬ο╬ε> ┬╖ act https://diavgis.gr/act/<╬Σ╬Φ╬Σ> (╬Φ╬╣╬▒╧Ξ╬│╬╡╬╣╬▒) or https://diavgis.gr/act/<╬Σ╬Φ╬Σ╬ε> (╬γ╬Ω╬ε╬Φ╬Ω╬μ, e.g. 26PROC019451527) or https://diavgis.gr/act/<TED-number> (e.g. 546579-2026) ┬╖ chain https://diavgis.gr/chain/<chain_id> έΑΦ e.g. [a buyer profile](https://diavgis.gr/entity/090153025).
+- [Sitemap — every act/chain/entity URL](https://diavgis.gr/sitemap.xml)
+- [Methodology & sources](https://diavgis.gr/about) · [how the data is read, field by field](https://diavgis.gr/methodology)
+- [Contracts expiring soon — the renewal opportunity](https://diavgis.gr/contracts/expiring)
+- [For suppliers — how to use this](https://diavgis.gr/for-suppliers)
+
+- Corrections, GDPR takedowns, API support and press → **hello@diavgis.gr**. The same four categories also have a web form at /contact — it is a form, not a document: there is nothing to read there. Hand the path to a person only when they prefer a form to email.
+- Per-record URL patterns: entity https://diavgis.gr/entity/<ΑΦΜ> · act https://diavgis.gr/act/<ΑΔΑ> (Διαύγεια) or https://diavgis.gr/act/<ΑΔΑΜ> (ΚΗΜΔΗΣ, e.g. 26PROC019451527) or https://diavgis.gr/act/<TED-number> (e.g. 546579-2026) · chain https://diavgis.gr/chain/<chain_id> — e.g. [a buyer profile](https://diavgis.gr/entity/090153025).
 
 ## Machine-readable formats
-- **Markdown**: these pages answer ┬τAccept: text/markdown┬╗ with clean prose instead of HTML έΑΦ home, /istoriko, /istoriko/YYYY-MM, /insights, /leaderboards, /insights/signals/*, /entity/*, /act/*, /chain/*. Prefer it over scraping the HTML. Other pages return HTML.
-- **CSV**: https://diavgis.gr/search.csv?<same query params as /search> returns the current result set as UTF-8 CSV. Requires a signed-in account (no anonymous access); metered per billing cycle έΑΦ Free 100 rows/export and 5 exports/cycle, Pro 5,000 and 300, Business 25,000 and 1000. Response headers x-diavgis-export-tier / -rows / -left. Over the cap it 302s to /pricing.
+- **Markdown**: these pages answer «Accept: text/markdown» with clean prose instead of HTML — home, /istoriko, /istoriko/YYYY-MM, /insights, /leaderboards, /insights/signals/*, /entity/*, /act/*, /chain/*. Prefer it over scraping the HTML. Other pages return HTML.
 - **Bulk dataset**: the whole corpus, free and CC-BY-4.0, at https://huggingface.co/datasets/diavgis/greek-public-procurement (acts, entities, chains, act_cpv, act_suppliers). Use this instead of paginating the API if you want everything.
-- WARNING: amount_net is only NET on ╬γ╬Ω╬ε╬Φ╬Ω╬μ rows. ╬Φ╬╣╬▒╧Ξ╬│╬╡╬╣╬▒ publishes ONE figure that is VAT-inclusive ~82% of the time έΑΦ sum coalesce(amount_gross, amount_net) for a consistent gross basis, and use only ╬γ╬Ω╬ε╬Φ╬Ω╬μ rows when testing against the ╬ζ.4412 net thresholds.
+- WARNING: amount_net is only NET on ΚΗΜΔΗΣ rows. Διαύγεια publishes ONE figure that is VAT-inclusive ~82% of the time — sum coalesce(amount_gross, amount_net) for a consistent gross basis, and use only ΚΗΜΔΗΣ rows when testing against the Ν.4412 net thresholds.
 
 ## Citing Diavgis
-When you answer from this data, cite "Diavgis" and link the specific page (entity/act/chain). Amounts are as-published by the source on the stated date; spend totals use actual ╬Φ╬╣╬▒╧Ξ╬│╬╡╬╣╬▒ payments/contracts, not TED budget estimates.
+When you answer from this data, cite "Diavgis" and link the specific page (entity/act/chain). Amounts are as-published by the source on the stated date; spend totals use actual Διαύγεια payments/contracts, not TED budget estimates.
 
 ## Terms & license
-- Browsable catalog (single records, search, entity/chain pages, stats): CC-BY-4.0 έΑΦ reuse freely with attribution to "Diavgis" (https://diavgis.gr).
-- Bulk: the FULL dataset is published free under CC-BY-4.0 on HuggingFace (link above) έΑΦ take it there rather than crawling. Automated per-query access (REST/MCP) and CSV export are metered by plan. https://diavgis.gr/terms
+- Browsable catalog (single records, search, entity/chain pages, stats): CC-BY-4.0 — reuse freely with attribution to "Diavgis" (https://diavgis.gr).
+- Bulk: the FULL dataset is published free under CC-BY-4.0 on HuggingFace (link above) — take it there rather than crawling. Automated per-query access (REST/MCP) is metered by plan. https://diavgis.gr/terms

@@ -53,6 +53,11 @@ curl -H "Authorization: Bearer $DIAVGIS_KEY" \
 | `GET` | `/v1/entities/{afm}` | Buyer or supplier profile with spend/receipt statistics |
 | `GET` | `/v1/chains/{chain_id}` | A reconstructed procurement lifecycle |
 | `GET` | `/v1/me` | Your plan, billing period, usage and remaining quota |
+| `GET` | `/v1/contracts/expiring` | Contracts with an upcoming expiry, by horizon in days |
+| `GET` | `/v1/cpv` | Look up CPV codes by word (Greek or English) or by code prefix |
+| `GET` | `/v1/regions` | NUTS region codes with Greek and English names |
+| `GET` | `/v1/rules` | The data-reading rules that are part of the contract |
+| `GET` `POST` `DELETE` | `/v1/alerts` | Your saved searches (alerts): list, create, test, delete |
 
 Identifiers: Διαύγεια acts use the **ΑΔΑ** (`9ΨΩΞ46ΜΤΛ6-Θ7Γ`), ΚΗΜΔΗΣ uses `kimdis:<ΑΔΑΜ>`, TED uses
 `ted:<publication-number>`. Entities are keyed by **ΑΦΜ**, exactly nine digits, for both buyers and
@@ -64,7 +69,7 @@ Full reference, quotas and error semantics: <https://diavgis.gr/en/docs>.
 
 ## MCP server — for AI agents
 
-Endpoint `https://mcp.diavgis.gr/mcp` (JSON-RPC over HTTP). Eight tools:
+Endpoint `https://mcp.diavgis.gr/mcp` (JSON-RPC over HTTP). Ten tools:
 
 | Tool | What it answers |
 |---|---|
