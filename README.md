@@ -49,7 +49,7 @@ curl -H "Authorization: Bearer $DIAVGIS_KEY" \
 | Method | Path | Purpose |
 |---|---|---|
 | `GET` | `/v1/tenders` | Search acts — filter by CPV, region, amount, date, procurement signals |
-| `GET` | `/v1/acts/{ada}` | One act, with its entities, CPVs and lifecycle chain |
+| `GET` | `/v1/acts/{ada}` | One act, with its entities, CPVs and lifecycle chain, plus the contractor `discount` on tenders and public-works awards/contracts |
 | `GET` | `/v1/entities/{afm}` | Buyer or supplier profile with spend/receipt statistics |
 | `GET` | `/v1/chains/{chain_id}` | A reconstructed procurement lifecycle |
 | `GET` | `/v1/me` | Your plan, billing period, usage and remaining quota |
@@ -76,7 +76,7 @@ Endpoint `https://mcp.diavgis.gr/mcp` (JSON-RPC over HTTP). Ten tools:
 | `find_entity` | Resolve a buyer/supplier **name** to its ΑΦΜ — first call when you only have a name |
 | `search_tenders` | Search acts across the three linked sources |
 | `expiring_contracts` | Contracts running now that expire within 0/7/30/180 days |
-| `get_act` | Full detail of one act |
+| `get_act` | Full detail of one act, including the contractor `discount` where there is one |
 | `get_entity` | Profile of a company or public body by ΑΦΜ |
 | `get_chain` | A reconstructed lifecycle chain |
 | `rank_entities` | Top buyers or suppliers |

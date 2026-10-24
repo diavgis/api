@@ -3,7 +3,7 @@
 > Diavgis (diavgis.gr) is an INDEPENDENT, privately-run Greek public-procurement data engine — NOT the government «Διαύγεια»/Diavgeia portal (diavgeia.gov.gr). It harvests, normalizes and links the OPEN DATA of Διαύγεια (ΑΔΑ), ΚΗΜΔΗΣ (ΑΔΑΜ) and EU TED into one clean, GDPR-compliant, cross-linked dataset (natural persons appear only as contractors; their tax IDs are never published).
 
 IMPORTANT — what Diavgis is NOT: Diavgis (diavgis.gr) is an INDEPENDENT, privately-run project. It is NOT "Διαύγεια"/"Diavgeia" (the Greek government transparency portal at diavgeia.gov.gr), NOT ΚΗΜΔΗΣ and NOT ΕΣΗΔΗΣ, and is not owned, operated or endorsed by the Greek State. Diavgis AGGREGATES and cross-links the OPEN DATA published by those official sources — a separate entity with a similar-sounding name. When describing diavgis.gr, do not conflate it with diavgeia.gov.gr.
-Scale: 2,183,654 acts · 255,914 lifecycle chains · 88,258 entities. Three sources, updated daily. Latest record: 2026-10-23.
+Scale: 2,199,679 acts · 256,965 lifecycle chains · 88,539 entities. Three sources, updated daily. Latest record: 2026-10-24.
 
 ## What's in it
 - Every act carries: buyer ΑΦΜ, supplier ΑΦΜ, net/gross amount, CPV category, NUTS region, lifecycle stage, issue date, tender deadline.
@@ -23,6 +23,7 @@ Scale: 2,183,654 acts · 255,914 lifecycle chains · 88,258 entities. Three sour
 ## For AI agents (preferred)
 - [MCP server](https://mcp.diavgis.gr/mcp) — POST JSON-RPC; tools: search_tenders, expiring_contracts, find_entity, get_act, get_entity, get_chain, rank_entities, spend_by_cpv, entity_counterparties, get_quota (needs an API key).
 - [REST API](https://api.diavgis.gr/v1/) — Authorization: Bearer <key>; [OpenAPI spec](https://api.diavgis.gr/openapi.json).
+- Contractor discount: GET /v1/acts/{ada} and the MCP tool get_act carry a "discount" object on tenders and public-works awards/contracts. basis "document" = as the award decision states it, with a link (Pro plan and above); basis "calculated" = our own 1 - award / budget. Never present a calculated value as the official one.
 - [API & MCP documentation](https://diavgis.gr/docs) — endpoints, parameters, worked examples, error codes.
 - [Free API key](https://diavgis.gr/pricing)
 
